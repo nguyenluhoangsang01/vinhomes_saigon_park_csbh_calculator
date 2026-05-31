@@ -1,0 +1,1922 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BTCLAND VIETNAM | CSBH Vinhomes Saigon Park</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+      :root {
+        --bg: #f5f8f5;
+        --card: #ffffff;
+        --ink: #143126;
+        --muted: #61736a;
+        --line: #dce9e2;
+        --green: #0e6b42;
+        --green2: #0a4d31;
+        --gold: #d7b46a;
+        --soft: #eef7f1;
+        --red: #e11d48;
+        --shadow: 0 18px 52px rgba(20, 60, 40, 0.1);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background: linear-gradient(180deg, #fff 0%, var(--bg) 48%, #fff 100%);
+        line-height: 1.55;
+        font-weight: 400;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1420px, calc(100% - 30px));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(255, 255, 255, 0.94);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        padding: 13px 0;
+      }
+
+      .brand {
+        display: flex;
+        gap: 13px;
+        align-items: center;
+      }
+
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 17px;
+        background: linear-gradient(135deg, var(--green), var(--green2));
+        color: #fff;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 1.05;
+        letter-spacing: 0.05em;
+        box-shadow: 0 10px 24px rgba(10, 77, 49, 0.22);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.02em;
+        font-weight: 700;
+      }
+
+      .brand p {
+        margin: 3px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .pills {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .pill {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 999px;
+        padding: 8px 12px;
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .hero {
+        padding: 32px 0 18px;
+      }
+
+      .heroGrid {
+        display: grid;
+        grid-template-columns: 1.06fr 0.94fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .heroText {
+        padding: 30px;
+        position: relative;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--soft);
+        color: var(--green2);
+        font-weight: 600;
+        font-size: 13px;
+        margin-bottom: 14px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      h2 {
+        font-size: clamp(32px, 4.8vw, 56px);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        margin: 0;
+      }
+
+      .lead {
+        margin: 17px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.72;
+        font-weight: 400;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 11px;
+        margin-top: 22px;
+      }
+
+      .btn {
+        border: 0;
+        border-radius: 15px;
+        padding: 13px 17px;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        transition: 0.16s;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .primary {
+        background: linear-gradient(135deg, var(--green), var(--green2));
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(14, 107, 66, 0.23);
+      }
+
+      .ghost {
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+
+      .heroPanel {
+        padding: 28px;
+        background:
+          radial-gradient(
+            circle at 20% 0,
+            rgba(215, 180, 106, 0.25),
+            transparent 18rem
+          ),
+          linear-gradient(145deg, #06291c, #0b7f5f 55%, #113626);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 380px;
+      }
+
+      .heroPanel h3 {
+        margin: 0;
+        font-size: 32px;
+        line-height: 1.12;
+        font-weight: 700;
+      }
+
+      .heroPanel p {
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .heroStats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .heroStats div {
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 16px;
+        padding: 13px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .heroStats b {
+        display: block;
+        color: #f6d78e;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .heroStats span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .sectionTitle {
+        margin: 28px 0 15px;
+      }
+
+      .sectionTitle h3 {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+
+      .sectionTitle p {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-weight: 400;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 520px minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .inputPanel {
+        position: sticky;
+        top: 92px;
+      }
+
+      .panelPad {
+        padding: 20px;
+      }
+
+      .field {
+        margin-bottom: 14px;
+      }
+
+      .field label {
+        display: block;
+        font-weight: 700;
+        margin: 0 0 8px;
+        font-size: 14px;
+      }
+
+      .field input,
+      .field select {
+        width: 100%;
+        min-width: 0;
+        height: 60px;
+        border: 1px solid #c8d9cd;
+        border-radius: 16px;
+        background: #fbfffc;
+        color: var(--ink);
+        font:
+          600 16px "Segoe UI",
+          Arial,
+          sans-serif;
+        padding: 0 18px;
+        outline: none;
+      }
+
+      .field select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding-right: 54px;
+        background-color: #fbfffc;
+        background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%23083f2b' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 22px center;
+        background-size: 18px 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .field input::placeholder {
+        color: #9bb0a3;
+        font-weight: 500;
+      }
+
+      .field input:focus,
+      .field select:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 0 4px rgba(14, 107, 66, 0.1);
+      }
+
+      .hint {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 6px 0 0;
+        font-weight: 400;
+      }
+
+      .error {
+        display: none;
+        color: #b42318;
+        font-weight: 700;
+        font-size: 13px;
+        margin-top: 8px;
+      }
+
+      .twoCols {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 14px;
+      }
+
+      .pdfGreetingFields {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 14px;
+        margin-bottom: 16px;
+        background: linear-gradient(180deg, #ffffff, #f7fcf9);
+      }
+
+      .pdfGreetingFields h4 {
+        margin: 0 0 6px;
+        color: var(--green2);
+        font-size: 16px;
+        line-height: 1.3;
+        font-weight: 700;
+      }
+
+      .pdfGreetingFields p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+        font-weight: 400;
+      }
+
+      .miniGrid,
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .mini,
+      .kpi {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px;
+        background: #fbfefc;
+      }
+
+      .mini span,
+      .kpi span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+
+      .mini b,
+      .kpi b {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .kpis {
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 0;
+      }
+
+      .results {
+        display: grid;
+        gap: 18px;
+      }
+
+      .tableCard {
+        padding: 18px;
+      }
+
+      .tableCard h4 {
+        margin: 0 0 5px;
+        font-size: 19px;
+        font-weight: 700;
+      }
+
+      .tableCard p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 400;
+      }
+
+      .tableWrap {
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        min-width: 860px;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 10px 11px;
+        font-size: 13px;
+        vertical-align: top;
+        text-align: left;
+        font-weight: 400;
+      }
+
+      th {
+        background: #eff7f2;
+        color: #244332;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      td.money,
+      th.money {
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .good {
+        font-weight: 700;
+        color: var(--green2);
+      }
+
+      .formula {
+        background: #0d2418;
+        color: #e8f6ed;
+        border-radius: 18px;
+        padding: 16px;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .formula code {
+        color: #d8f3dc;
+        font-weight: 600;
+      }
+
+      .modalOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(8, 20, 13, 0.58);
+        backdrop-filter: blur(8px);
+      }
+
+      .modalOverlay.show {
+        display: flex;
+      }
+
+      .modalCard {
+        width: min(520px, 100%);
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.22);
+        overflow: hidden;
+      }
+
+      .modalHead {
+        padding: 22px 22px 12px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .modalHead h3 {
+        margin: 0;
+        font-size: 24px;
+        line-height: 1.2;
+        color: var(--green2);
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+
+      .modalHead p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .modalClose {
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 22px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .modalBody {
+        padding: 0 22px 22px;
+      }
+
+      .modalForm {
+        display: grid;
+        gap: 13px;
+      }
+
+      .modalForm label {
+        display: block;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 7px;
+      }
+
+      .modalForm input {
+        width: 100%;
+        height: 52px;
+        border: 1px solid #c8d9cd;
+        border-radius: 15px;
+        background: #fbfffc;
+        color: var(--ink);
+        font:
+          600 16px "Segoe UI",
+          Arial,
+          sans-serif;
+        padding: 0 14px;
+        outline: none;
+      }
+
+      .modalError {
+        display: none;
+        color: #b42318;
+        background: #fff4f2;
+        border: 1px solid #ffd6d0;
+        border-radius: 14px;
+        padding: 10px 12px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .modalNote {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+        margin: 2px 0 0;
+        font-weight: 400;
+      }
+
+      .modalActions {
+        display: grid;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .modalActions .btn {
+        width: 100%;
+      }
+
+      footer {
+        margin-top: 36px;
+        background: #08140d;
+        color: #dceee4;
+        padding: 30px 0;
+      }
+
+      .footerGrid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 18px;
+      }
+
+      footer p {
+        color: #a7c1b2;
+        margin: 8px 0 0;
+      }
+
+      .footerContact {
+        display: grid;
+        gap: 7px;
+      }
+
+      @media (max-width: 1180px) {
+        .heroGrid,
+        .layout,
+        .footerGrid {
+          grid-template-columns: 1fr;
+        }
+
+        .inputPanel {
+          position: relative;
+          top: auto;
+        }
+
+        .pills {
+          display: none;
+        }
+
+        .kpis {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .heroPanel {
+          min-height: 320px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .container {
+          width: calc(100% - 20px);
+        }
+
+        .heroText,
+        .panelPad,
+        .tableCard {
+          padding: 16px;
+        }
+
+        .miniGrid,
+        .kpis,
+        .twoCols {
+          grid-template-columns: 1fr;
+        }
+
+        table {
+          min-width: 760px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <div class="logo">BTC<br />LAND</div>
+          <div>
+            <h1>BTCLAND VIETNAM</h1>
+            <p>CSBH Vinhomes Saigon Park</p>
+          </div>
+        </div>
+        <div class="pills">
+          <span class="pill">Hotline: 0356.99.01.99</span>
+          <span class="pill">Email: btclandvn1@gmail.com</span>
+          <span class="pill">Số 37, Đường 37, KĐT Vạn Phúc</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container heroGrid">
+        <div class="card heroText">
+          <div class="eyebrow">
+            <span class="dot"></span> Vinhomes Saigon Park · CSBH
+          </div>
+          <h2>Công cụ tính chính sách bán hàng Vinhomes Saigon Park</h2>
+          <p class="lead">
+            Chọn dòng sản phẩm, chọn phương án TTS/HTLS, nhập giá và diện tích
+            để hệ thống tự tính tổng giá, mức chiết khấu và vốn tự có nếu vay
+            ngân hàng.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#calculator">Tạo phiếu tính</a>
+            <button class="btn ghost" id="topPdfBtn" disabled>Xuất PDF</button>
+          </div>
+        </div>
+
+        <div class="card heroPanel">
+          <div>
+            <div
+              class="eyebrow"
+              style="background: rgba(255, 255, 255, 0.12); color: #fff"
+            >
+              <span class="dot" style="background: #f6d78e"></span> Bảng tính
+              CSBH tạm tính
+            </div>
+            <h3>Tách logic cho Giãn Xây, Thô tự xây và CĐT hoàn thiện</h3>
+            <p>
+              Hỗ trợ TTS, HTLS 70%, chiết khấu thanh toán sớm, bảo lãnh ngân
+              hàng và thanh toán theo tiến độ theo dữ liệu trong Excel.
+            </p>
+          </div>
+          <div class="heroStats">
+            <div><b>3 dòng SP</b><span>Giãn xây, thô, hoàn thiện</span></div>
+            <div><b>TTS/HTLS</b><span>2 nhóm phương án chính</span></div>
+            <div><b>HTLS 70%</b><span>30–36 tháng theo dòng SP</span></div>
+            <div><b>VAT XD</b><span>Chi phí xây dựng × 1,1</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container" id="calculator">
+      <div class="sectionTitle">
+        <h3>Công cụ tính CSBH</h3>
+        <p>
+          Thông tin trong ô nhập là placeholder. Bạn chỉ cần nhập các số chính,
+          hệ thống sẽ tự động tính theo công thức.
+        </p>
+      </div>
+
+      <div class="layout">
+        <aside class="card inputPanel">
+          <div class="panelPad">
+            <div class="pdfGreetingFields">
+              <h4>Thông tin lời chào trên PDF</h4>
+              <p>
+                Nội dung này sẽ xuất hiện ở phần đầu phiếu tính gửi cho khách
+                hàng.
+              </p>
+              <div class="field">
+                <label for="customerDisplayName">Tên khách hàng</label>
+                <input
+                  id="customerDisplayName"
+                  placeholder="Nhập tên khách hàng"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="field">
+                <label for="staffDisplayName">Tên nhân viên tư vấn</label>
+                <input
+                  id="staffDisplayName"
+                  placeholder="Nhập tên nhân viên tư vấn"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="productLine">Dòng sản phẩm</label>
+              <select id="productLine">
+                <option value="gianxay">Dòng sản phẩm giãn xây</option>
+                <option value="tho">Dòng sản phẩm thô - KH tự xây</option>
+                <option value="hoanthien">Dòng sản phẩm CĐT hoàn thiện</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="paymentPlan">Phương án</label>
+              <select id="paymentPlan">
+                <option value="tts">Phương án TTS</option>
+                <option value="htls">Phương án HTLS</option>
+              </select>
+            </div>
+
+            <div class="twoCols">
+              <div class="field">
+                <label for="landArea">Diện tích đất</label>
+                <input
+                  id="landArea"
+                  inputmode="decimal"
+                  placeholder="Ví dụ: 50"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="field">
+                <label for="buildArea">Diện tích xây dựng</label>
+                <input
+                  id="buildArea"
+                  inputmode="decimal"
+                  placeholder="Ví dụ: 150"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div id="gianFields">
+              <div class="field">
+                <label for="landPrice">Giá đất + thương mại</label>
+                <input
+                  id="landPrice"
+                  inputmode="numeric"
+                  placeholder="Ví dụ: 4.800.000.000"
+                  autocomplete="off"
+                />
+                <div class="hint">
+                  Áp dụng cho dòng giãn xây. TTS sẽ chiết khấu trên giá đất +
+                  thương mại.
+                </div>
+              </div>
+              <div class="field">
+                <label for="buildCost">Chi phí xây dựng / m² chưa VAT</label>
+                <input
+                  id="buildCost"
+                  inputmode="numeric"
+                  placeholder="Ví dụ: 8.500.000"
+                  autocomplete="off"
+                />
+                <div class="hint">
+                  Giá trị xây dựng = diện tích xây dựng × chi phí xây dựng ×
+                  1,1.
+                </div>
+              </div>
+            </div>
+
+            <div id="normalFields" style="display: none">
+              <div class="field">
+                <label for="contractPrice"
+                  >Giá trên HĐMB / Giá chuẩn HTLS</label
+                >
+                <input
+                  id="contractPrice"
+                  inputmode="numeric"
+                  placeholder="Ví dụ: 6.400.000.000"
+                  autocomplete="off"
+                />
+                <div class="hint">
+                  Áp dụng cho dòng thô tự xây và dòng CĐT hoàn thiện.
+                </div>
+              </div>
+            </div>
+
+            <div id="inputError" class="error">
+              Vui lòng nhập đầy đủ thông tin giá để tính CSBH.
+            </div>
+
+            <div class="miniGrid">
+              <div class="mini"><span>TCBG</span><b id="miniType">—</b></div>
+              <div class="mini">
+                <span>Tổng giá tạm tính</span><b id="miniTotal">—</b>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn primary" id="pdfBtn" disabled>Xuất PDF</button>
+              <button class="btn ghost" id="resetBtn">Xóa dữ liệu nhập</button>
+            </div>
+          </div>
+        </aside>
+
+        <section class="results">
+          <div class="kpis">
+            <div class="kpi"><span>Giá cơ sở</span><b id="kpiBase">—</b></div>
+            <div class="kpi">
+              <span>Chiết khấu TTS</span><b id="kpiDiscount">—</b>
+            </div>
+            <div class="kpi">
+              <span>Vốn tự có nếu vay</span><b id="kpiEquity">—</b>
+            </div>
+            <div class="kpi">
+              <span>Tổng giá tạm tính</span><b id="kpiTotal">—</b>
+            </div>
+          </div>
+
+          <div class="card tableCard">
+            <h4>Kết quả phương án đang chọn</h4>
+            <p>
+              Phần này hiển thị chi tiết cách tính theo dòng sản phẩm và phương
+              án đã chọn.
+            </p>
+            <div class="tableWrap">
+              <table>
+                <tbody id="currentBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card tableCard">
+            <h4>Bảng so sánh các dòng sản phẩm</h4>
+            <p>
+              So sánh nhanh 6 trường hợp: Giãn xây, Thô tự xây, CĐT hoàn thiện,
+              mỗi dòng có TTS và HTLS.
+            </p>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Dòng sản phẩm</th>
+                    <th>Phương án</th>
+                    <th class="money">Giá cơ sở</th>
+                    <th class="money">Giá trị xây dựng</th>
+                    <th class="money">CK TTS</th>
+                    <th class="money">Tổng giá</th>
+                    <th>HTLS / Ghi chú</th>
+                  </tr>
+                </thead>
+                <tbody id="compareBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card tableCard">
+            <h4>Chính sách tham khảo trong file Excel</h4>
+            <p>
+              Những tỷ lệ này dùng để tư vấn nhanh, khi có CSBH chính thức cần
+              đối chiếu lại thông báo của Chủ Đầu Tư.
+            </p>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Hạng mục</th>
+                    <th>Dòng giãn xây</th>
+                    <th>Dòng thô tự xây</th>
+                    <th>Dòng CĐT hoàn thiện</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Chiết khấu TTS</th>
+                    <td>18%</td>
+                    <td>18%</td>
+                    <td>22,5%</td>
+                  </tr>
+                  <tr>
+                    <th>HTLS</th>
+                    <td>70% trong 30 tháng</td>
+                    <td>70% trong 30 tháng</td>
+                    <td>70% trong 36 tháng</td>
+                  </tr>
+                  <tr>
+                    <th>Bảo lãnh ngân hàng</th>
+                    <td>0,5%</td>
+                    <td>0,5%</td>
+                    <td>0,5%</td>
+                  </tr>
+                  <tr>
+                    <th>Thanh toán theo tiến độ</th>
+                    <td>2%</td>
+                    <td>2%</td>
+                    <td>2%</td>
+                  </tr>
+                  <tr>
+                    <th>Ghi chú chính</th>
+                    <td>Chiết khấu trên giá đất và giá trị thương mại</td>
+                    <td>CK trên giá tổng</td>
+                    <td>CK trên giá tổng</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card tableCard">
+            <h4>Logic công thức chính</h4>
+            <div class="formula">
+              <code
+                >Giãn xây TTS = Giá đất + TM × (1 - 18%) + Diện tích xây dựng ×
+                Chi phí xây dựng × 1,1</code
+              ><br />
+              <code
+                >Giãn xây HTLS = Giá đất + TM + Diện tích xây dựng × Chi phí xây
+                dựng × 1,1</code
+              ><br />
+              <code>Thô tự xây TTS = Giá HĐMB HTLS × (1 - 18%)</code><br />
+              <code>CĐT hoàn thiện TTS = Giá HĐMB HTLS × (1 - 22,5%)</code
+              ><br />
+              <code>Vốn tự có nếu vay ngân hàng = Giá cơ sở HTLS × 30%</code
+              ><br />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="modalOverlay" id="leadModal" aria-hidden="true">
+      <div
+        class="modalCard"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="leadModalTitle"
+      >
+        <div class="modalHead">
+          <div>
+            <h3 id="leadModalTitle">
+              Đăng Kí Ngay Nhận Nhiều Thông Tin Mới Nhất
+            </h3>
+            <p>
+              Vui lòng để lại thông tin để BTCLAND hỗ trợ tư vấn và gửi phiếu
+              tính PDF.
+            </p>
+          </div>
+          <button
+            class="modalClose"
+            id="closeLeadModal"
+            type="button"
+            aria-label="Đóng"
+          >
+            ×
+          </button>
+        </div>
+        <div class="modalBody">
+          <form class="modalForm" id="leadForm">
+            <div>
+              <label for="leadName">Họ &amp; Tên người nhận PDF</label>
+              <input
+                id="leadName"
+                type="text"
+                placeholder="Nguyễn Văn A"
+                autocomplete="name"
+              />
+            </div>
+            <div>
+              <label for="leadPhone">Số điện thoại</label>
+              <input
+                id="leadPhone"
+                type="tel"
+                placeholder="0901234567"
+                autocomplete="tel"
+              />
+            </div>
+            <div>
+              <label for="leadEmail">Địa chỉ email</label>
+              <input
+                id="leadEmail"
+                type="email"
+                placeholder="email@gmail.com"
+                autocomplete="email"
+              />
+            </div>
+            <div class="modalError" id="leadError"></div>
+            <p class="modalNote">
+              Sau khi bấm Đăng ký, hệ thống sẽ gửi thông tin về email BTCLAND và
+              xuất phiếu tính PDF.
+            </p>
+            <div class="modalActions">
+              <button class="btn primary" id="leadSubmitBtn" type="submit">
+                Đăng ký
+              </button>
+              <button class="btn ghost" id="cancelLeadModal" type="button">
+                Hủy
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container footerGrid">
+        <div>
+          <h3 style="margin: 0">BTCLAND VIETNAM</h3>
+          <p>
+            Công cụ mô phỏng CSBH Vinhomes Saigon Park dựa trên file Excel CSBH
+            dự án Sài Gòn Park. Kết quả chỉ dùng để tư vấn tham khảo, không thay
+            thế CSBH chính thức từ Chủ Đầu Tư.
+          </p>
+        </div>
+        <div class="footerContact">
+          <strong>Thông tin liên hệ</strong>
+          <span>Hotline: 0356.99.01.99</span>
+          <span>Email: btclandvn1@gmail.com</span>
+          <span>Địa chỉ: Số 37, Đường 37, KĐT Vạn Phúc</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+
+      const moneyFmt = new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+        maximumFractionDigits: 0,
+      });
+
+      const numFmt = new Intl.NumberFormat("vi-VN");
+
+      const EMAILJS_PUBLIC_KEY = "996QoomXWH2i332j9";
+      const EMAILJS_SERVICE_ID = "service_x58dht6";
+      const EMAILJS_TEMPLATE_ID = "template_8fu8tnl";
+
+      if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+      const DISCOUNT_TTS = {
+        gianxay: 0.18,
+        tho: 0.18,
+        hoanthien: 0.225,
+      };
+
+      const PRODUCT_META = {
+        gianxay: {
+          label: "Dòng sản phẩm giãn xây",
+          tcbg: "Thô hoàn thiện mặt ngoài",
+          note: "Chiết khấu trên giá đất và giá trị thương mại",
+          htls: "HTLS 70% trong 30 tháng",
+        },
+        tho: {
+          label: "Dòng sản phẩm thô - KH tự xây",
+          tcbg: "Thô hoàn thiện mặt ngoài",
+          note: "CK trên giá tổng",
+          htls: "HTLS 70% trong 30 tháng",
+        },
+        hoanthien: {
+          label: "Dòng sản phẩm CĐT hoàn thiện",
+          tcbg: "Hoàn thiện",
+          note: "CK trên giá tổng",
+          htls: "HTLS 70% trong 36 tháng",
+        },
+      };
+
+      const BANK_GUARANTEE_RATE = 0.005;
+      const PROGRESS_PAYMENT_RATE = 0.02;
+      const LOAN_RATE = 0.7;
+
+      function onlyDigits(v) {
+        return String(v || "").replace(/[^0-9]/g, "");
+      }
+
+      function parseMoney(v) {
+        return Number(onlyDigits(v)) || 0;
+      }
+
+      function parseDecimal(v) {
+        const normalized = String(v || "")
+          .replace(",", ".")
+          .replace(/[^0-9.]/g, "");
+        return Number(normalized) || 0;
+      }
+
+      function money(v) {
+        return Number.isFinite(v) ? moneyFmt.format(Math.round(v)) : "—";
+      }
+
+      function pct(v) {
+        return Number.isFinite(v)
+          ? (Math.round(v * 10000) / 100).toString().replace(".", ",") + "%"
+          : "—";
+      }
+
+      function setText(id, v) {
+        $(id).textContent = v;
+      }
+
+      function formatMoneyInput(id) {
+        const el = $(id);
+        const raw = onlyDigits(el.value);
+        el.value = raw ? numFmt.format(Number(raw)) : "";
+      }
+
+      function inputData() {
+        const productLine = $("productLine").value;
+        return {
+          customerDisplayName:
+            $("customerDisplayName").value.trim() || "quý anh chị khách hàng",
+          staffDisplayName:
+            $("staffDisplayName").value.trim() || "Nhân viên BTCLAND",
+          productLine,
+          paymentPlan: $("paymentPlan").value,
+          landArea: parseDecimal($("landArea").value),
+          buildArea: parseDecimal($("buildArea").value),
+          landPrice: parseMoney($("landPrice").value),
+          buildCost: parseMoney($("buildCost").value),
+          contractPrice: parseMoney($("contractPrice").value),
+        };
+      }
+
+      function validateInput(input) {
+        if (input.productLine === "gianxay") {
+          return (
+            input.landPrice > 0 && input.buildArea > 0 && input.buildCost > 0
+          );
+        }
+        return input.contractPrice > 0;
+      }
+
+      function calcByLine(input, productLine, paymentPlan) {
+        const meta = PRODUCT_META[productLine];
+        const discountRate = DISCOUNT_TTS[productLine] || 0;
+        const isTTS = paymentPlan === "tts";
+
+        let base = 0;
+        let construction = 0;
+        let total = 0;
+        let discount = 0;
+        let equity = 0;
+        let bankGuarantee = 0;
+        let progressDiscount = 0;
+        let formula = "";
+
+        if (productLine === "gianxay") {
+          const landBase = input.landPrice;
+          construction = input.buildArea * input.buildCost * 1.1;
+          discount = isTTS ? landBase * discountRate : 0;
+          base = landBase + construction;
+          total = landBase - discount + construction;
+          equity = isTTS ? 0 : landBase * 0.3;
+          bankGuarantee = landBase * BANK_GUARANTEE_RATE;
+          progressDiscount = landBase * PROGRESS_PAYMENT_RATE;
+          formula = isTTS
+            ? "Giá đất + TM × (1 - 18%) + Diện tích xây dựng × Chi phí XD × 1,1"
+            : "Giá đất + TM + Diện tích xây dựng × Chi phí XD × 1,1";
+        } else {
+          const htlsBase = input.contractPrice;
+          discount = isTTS ? htlsBase * discountRate : 0;
+          base = htlsBase;
+          total = htlsBase - discount;
+          equity = isTTS ? 0 : htlsBase * 0.3;
+          bankGuarantee = htlsBase * BANK_GUARANTEE_RATE;
+          progressDiscount = htlsBase * PROGRESS_PAYMENT_RATE;
+          formula = isTTS
+            ? `Giá HĐMB HTLS × (1 - ${pct(discountRate)})`
+            : "Giá HĐMB HTLS";
+        }
+
+        return {
+          productLine,
+          productLabel: meta.label,
+          paymentPlan,
+          paymentLabel: isTTS ? "Phương án TTS" : "Phương án HTLS",
+          tcbg: meta.tcbg,
+          note: meta.note,
+          htls: meta.htls,
+          discountRate,
+          base,
+          construction,
+          discount,
+          total,
+          equity,
+          bankGuarantee,
+          progressDiscount,
+          formula,
+          valid: total > 0,
+        };
+      }
+
+      function calcCurrent() {
+        const input = inputData();
+        return calcByLine(input, input.productLine, input.paymentPlan);
+      }
+
+      function compareRows(input) {
+        const rows = [];
+        ["gianxay", "tho", "hoanthien"].forEach((line) => {
+          ["tts", "htls"].forEach((plan) => {
+            const synthetic = { ...input, productLine: line };
+            rows.push(calcByLine(synthetic, line, plan));
+          });
+        });
+        return rows;
+      }
+
+      function renderCurrent(input, result) {
+        const rows = [
+          [
+            "Dòng sản phẩm",
+            result.productLabel,
+            "Phương án",
+            result.paymentLabel,
+          ],
+          ["TCBG", result.tcbg, "Ghi chú CK", result.note],
+          [
+            "Diện tích đất",
+            input.landArea ? `${input.landArea} m²` : "—",
+            "Diện tích xây dựng",
+            input.buildArea ? `${input.buildArea} m²` : "—",
+          ],
+          [
+            "Giá cơ sở",
+            money(result.base),
+            "Giá trị xây dựng",
+            result.construction ? money(result.construction) : "—",
+          ],
+          [
+            "Chiết khấu TTS",
+            money(result.discount),
+            "Tỷ lệ CK TTS",
+            pct(result.discountRate),
+          ],
+          [
+            "Bảo lãnh NH 0,5%",
+            money(result.bankGuarantee),
+            "Thanh toán tiến độ 2%",
+            money(result.progressDiscount),
+          ],
+          [
+            "Vốn tự có nếu vay NH",
+            result.equity ? money(result.equity) : "—",
+            "HTLS",
+            result.paymentPlan === "htls" ? result.htls : "—",
+          ],
+          [
+            "Tổng giá tạm tính",
+            money(result.total),
+            "Công thức",
+            result.formula,
+          ],
+        ];
+
+        $("currentBody").innerHTML = rows
+          .map(
+            (r) =>
+              `<tr><th>${r[0]}</th><td>${r[1]}</td><th>${r[2]}</th><td>${r[3]}</td></tr>`,
+          )
+          .join("");
+      }
+
+      function renderCompare(input) {
+        $("compareBody").innerHTML = compareRows(input)
+          .map(
+            (x) => `
+            <tr>
+              <td>${x.productLabel}<br><span class="hint">${x.tcbg}</span></td>
+              <td>${x.paymentLabel}</td>
+              <td class="money">${money(x.base)}</td>
+              <td class="money">${x.construction ? money(x.construction) : "—"}</td>
+              <td class="money">${x.discount ? money(x.discount) : "—"}<br><small>${x.paymentPlan === "tts" ? pct(x.discountRate) : "—"}</small></td>
+              <td class="money good">${money(x.total)}</td>
+              <td>${x.paymentPlan === "htls" ? x.htls : x.note}</td>
+            </tr>
+          `,
+          )
+          .join("");
+      }
+
+      function updateVisibleFields() {
+        const line = $("productLine").value;
+        $("gianFields").style.display = line === "gianxay" ? "block" : "none";
+        $("normalFields").style.display = line === "gianxay" ? "none" : "block";
+      }
+
+      function updateUI() {
+        updateVisibleFields();
+        const input = inputData();
+        const valid = validateInput(input);
+        const result = calcCurrent();
+
+        $("inputError").style.display = valid ? "none" : "block";
+        $("pdfBtn").disabled = !valid;
+        $("topPdfBtn").disabled = !valid;
+
+        if (!valid) {
+          setText("miniType", PRODUCT_META[input.productLine].tcbg);
+          setText("miniTotal", "—");
+          setText("kpiBase", "—");
+          setText("kpiDiscount", "—");
+          setText("kpiEquity", "—");
+          setText("kpiTotal", "—");
+          $("currentBody").innerHTML = "";
+          $("compareBody").innerHTML = "";
+          return;
+        }
+
+        setText("miniType", result.tcbg);
+        setText("miniTotal", money(result.total));
+        setText("kpiBase", money(result.base));
+        setText("kpiDiscount", result.discount ? money(result.discount) : "—");
+        setText("kpiEquity", result.equity ? money(result.equity) : "—");
+        setText("kpiTotal", money(result.total));
+
+        renderCurrent(input, result);
+        renderCompare(input);
+      }
+
+      function clearInputs() {
+        [
+          "customerDisplayName",
+          "staffDisplayName",
+          "landArea",
+          "buildArea",
+          "landPrice",
+          "buildCost",
+          "contractPrice",
+        ].forEach((id) => ($(id).value = ""));
+
+        $("productLine").value = "gianxay";
+        $("paymentPlan").value = "tts";
+        updateUI();
+      }
+
+      function cleanPhone(v) {
+        return String(v || "").replace(/[\s.-]/g, "");
+      }
+
+      function getLeadData() {
+        return {
+          name: $("leadName").value.trim(),
+          phone: cleanPhone($("leadPhone").value),
+          email: $("leadEmail").value.trim(),
+        };
+      }
+
+      function validateLeadData(d) {
+        if (!d.name) return "Vui lòng nhập Họ & Tên.";
+        if (!/^(0|\+84|84)(3|5|7|8|9)[0-9]{8}$/.test(d.phone))
+          return "Vui lòng nhập số điện thoại hợp lệ.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))
+          return "Vui lòng nhập địa chỉ email hợp lệ.";
+        return "";
+      }
+
+      function openLeadModal() {
+        const input = inputData();
+        if (!validateInput(input)) {
+          $("inputError").style.display = "block";
+          return;
+        }
+        $("leadError").style.display = "none";
+        $("leadModal").classList.add("show");
+        $("leadModal").setAttribute("aria-hidden", "false");
+        setTimeout(() => $("leadName").focus(), 80);
+      }
+
+      function hideLeadModal() {
+        $("leadModal").classList.remove("show");
+        $("leadModal").setAttribute("aria-hidden", "true");
+      }
+
+      async function sendLeadEmail(customer) {
+        if (!window.emailjs) {
+          throw new Error(
+            "Không tải được EmailJS. Vui lòng kiểm tra Internet hoặc script EmailJS.",
+          );
+        }
+
+        const input = inputData();
+        const d = calcCurrent();
+
+        const params = {
+          to_email: "hoangphibtcland@gmail.com",
+          from_name: "BTCLAND VIETNAM",
+
+          customer_name: customer.name,
+          customer_phone: customer.phone,
+          customer_email: customer.email,
+          registered_at: new Date().toLocaleString("vi-VN"),
+
+          pdf_customer_name: input.customerDisplayName,
+          staff_name: input.staffDisplayName,
+
+          project_name: "Vinhomes Saigon Park",
+          quote_type: "Phiếu tính CSBH tham khảo",
+          product_line: d.productLabel,
+          tcbg: d.tcbg,
+          selected_plan: d.paymentLabel,
+          base_price: money(d.base),
+          tts_discount: money(d.discount),
+          equity_if_loan: d.equity ? money(d.equity) : "—",
+          total_price: money(d.total),
+          htls_policy: d.paymentPlan === "htls" ? d.htls : "—",
+          formula: d.formula,
+        };
+
+        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+      }
+
+      function c(text, opt = {}) {
+        return {
+          text: String(text ?? ""),
+          fontSize: opt.fontSize || 8.5,
+          bold: !!opt.bold,
+          color: opt.color || "#153126",
+          alignment: opt.alignment || "left",
+          margin: opt.margin || [0, 0, 0, 0],
+        };
+      }
+
+      function th(t) {
+        return {
+          text: t,
+          bold: true,
+          fillColor: "#e7f3ec",
+          color: "#143b2a",
+          fontSize: 8.5,
+        };
+      }
+
+      function makeTable(headers, body, widths) {
+        return {
+          table: {
+            headerRows: 1,
+            widths,
+            body: [headers.map(th), ...body],
+            dontBreakRows: true,
+          },
+          layout: {
+            hLineColor: () => "#cfded4",
+            vLineColor: () => "#cfded4",
+            paddingTop: () => 5,
+            paddingBottom: () => 5,
+            paddingLeft: () => 5,
+            paddingRight: () => 5,
+          },
+          margin: [0, 6, 0, 10],
+        };
+      }
+
+      function greetingBox(input) {
+        return {
+          table: {
+            widths: ["*"],
+            body: [
+              [
+                {
+                  stack: [
+                    {
+                      text: `- Nhân viên tư vấn ${input.staffDisplayName}`,
+                      bold: true,
+                      fontSize: 10,
+                      color: "#0a4d31",
+                      margin: [0, 0, 0, 4],
+                    },
+                    {
+                      text: `- Kính gửi quý khách hàng ${input.customerDisplayName}`,
+                      bold: true,
+                      fontSize: 10,
+                      color: "#153126",
+                    },
+                  ],
+                  margin: [8, 6, 8, 6],
+                },
+              ],
+            ],
+          },
+          layout: {
+            hLineWidth: () => 1.3,
+            vLineWidth: () => 1.3,
+            hLineColor: () => "#e11d48",
+            vLineColor: () => "#e11d48",
+            paddingTop: () => 0,
+            paddingBottom: () => 0,
+            paddingLeft: () => 0,
+            paddingRight: () => 0,
+          },
+          margin: [0, 8, 0, 10],
+        };
+      }
+
+      function exportPDF(customer = null) {
+        const input = inputData();
+        const d = calcCurrent();
+        const now = new Date().toLocaleString("vi-VN");
+        const compare = compareRows(input);
+
+        const compareBody = compare.map((x) => [
+          c(x.productLabel, { bold: true }),
+          c(x.paymentLabel),
+          c(money(x.base), { alignment: "right" }),
+          c(x.construction ? money(x.construction) : "—", {
+            alignment: "right",
+          }),
+          c(x.discount ? money(x.discount) : "—", { alignment: "right" }),
+          c(money(x.total), {
+            alignment: "right",
+            bold: true,
+            color: "#0a4d31",
+          }),
+          c(x.paymentPlan === "htls" ? x.htls : x.note),
+        ]);
+
+        const doc = {
+          pageSize: "A4",
+          pageOrientation: "landscape",
+          pageMargins: [28, 26, 28, 26],
+          defaultStyle: { font: "Roboto", fontSize: 9, color: "#153126" },
+          content: [
+            {
+              text: "BTCLAND VIETNAM · Phiếu tính CSBH Vinhomes Saigon Park",
+              style: "title",
+            },
+            {
+              text: `Hotline: 0356.99.01.99  |  Email: btclandvn1@gmail.com  |  Ngày xuất: ${now}`,
+              style: "small",
+            },
+            {
+              canvas: [
+                {
+                  type: "line",
+                  x1: 0,
+                  y1: 0,
+                  x2: 785,
+                  y2: 0,
+                  lineWidth: 1,
+                  lineColor: "#0e6b42",
+                },
+              ],
+              margin: [0, 8, 0, 6],
+            },
+            greetingBox(input),
+            {
+              columns: [
+                {
+                  width: "50%",
+                  stack: [
+                    { text: "Thông tin nhập", style: "subTitle" },
+                    makeTable(
+                      ["Thông tin", "Giá trị"],
+                      [
+                        [c("Dòng sản phẩm", { bold: true }), c(d.productLabel)],
+                        [c("Phương án", { bold: true }), c(d.paymentLabel)],
+                        [c("TCBG", { bold: true }), c(d.tcbg)],
+                        [
+                          c("Diện tích đất", { bold: true }),
+                          c(input.landArea ? `${input.landArea} m²` : "—"),
+                        ],
+                        [
+                          c("Diện tích xây dựng", { bold: true }),
+                          c(input.buildArea ? `${input.buildArea} m²` : "—"),
+                        ],
+                      ],
+                      [130, "*"],
+                    ),
+                  ],
+                },
+                {
+                  width: "50%",
+                  stack: [
+                    { text: "Kết quả phương án đang chọn", style: "subTitle" },
+                    makeTable(
+                      ["Chỉ số", "Giá trị"],
+                      [
+                        [
+                          c("Giá cơ sở", { bold: true }),
+                          c(money(d.base), { alignment: "right" }),
+                        ],
+                        [
+                          c("Giá trị xây dựng", { bold: true }),
+                          c(d.construction ? money(d.construction) : "—", {
+                            alignment: "right",
+                          }),
+                        ],
+                        [
+                          c("Chiết khấu TTS", { bold: true }),
+                          c(d.discount ? money(d.discount) : "—", {
+                            alignment: "right",
+                          }),
+                        ],
+                        [
+                          c("Vốn tự có nếu vay", { bold: true }),
+                          c(d.equity ? money(d.equity) : "—", {
+                            alignment: "right",
+                          }),
+                        ],
+                        [
+                          c("Tổng giá tạm tính", { bold: true }),
+                          c(money(d.total), { alignment: "right", bold: true }),
+                        ],
+                      ],
+                      [150, "*"],
+                    ),
+                  ],
+                },
+              ],
+              columnGap: 18,
+            },
+            ...(customer
+              ? [
+                  { text: "Thông tin khách hàng đăng ký", style: "subTitle" },
+                  makeTable(
+                    ["Họ & Tên", "Số điện thoại", "Email", "Thời điểm đăng ký"],
+                    [
+                      [
+                        c(customer.name),
+                        c(customer.phone),
+                        c(customer.email),
+                        c(now),
+                      ],
+                    ],
+                    [150, 100, 190, 130],
+                  ),
+                ]
+              : []),
+            {
+              text: "Bảng so sánh các phương án",
+              style: "subTitle",
+              pageBreak: "before",
+            },
+            makeTable(
+              [
+                "Dòng sản phẩm",
+                "Phương án",
+                "Giá cơ sở",
+                "Giá trị XD",
+                "CK TTS",
+                "Tổng giá",
+                "HTLS/Ghi chú",
+              ],
+              compareBody,
+              [130, 90, 105, 95, 90, 110, "*"],
+            ),
+            { text: "Chính sách tham khảo", style: "subTitle" },
+            makeTable(
+              [
+                "Hạng mục",
+                "Dòng giãn xây",
+                "Dòng thô tự xây",
+                "Dòng CĐT hoàn thiện",
+              ],
+              [
+                [
+                  c("Chiết khấu TTS", { bold: true }),
+                  c("18%"),
+                  c("18%"),
+                  c("22,5%"),
+                ],
+                [
+                  c("HTLS", { bold: true }),
+                  c("70% trong 30 tháng"),
+                  c("70% trong 30 tháng"),
+                  c("70% trong 36 tháng"),
+                ],
+                [
+                  c("Bảo lãnh ngân hàng", { bold: true }),
+                  c("0,5%"),
+                  c("0,5%"),
+                  c("0,5%"),
+                ],
+                [
+                  c("Thanh toán theo tiến độ", { bold: true }),
+                  c("2%"),
+                  c("2%"),
+                  c("2%"),
+                ],
+                [
+                  c("Ghi chú", { bold: true }),
+                  c("CK trên giá đất và giá trị thương mại"),
+                  c("CK trên giá tổng"),
+                  c("CK trên giá tổng"),
+                ],
+              ],
+              [130, "*", "*", "*"],
+            ),
+            { text: "Công thức chính", style: "subTitle" },
+            makeTable(
+              ["Hạng mục", "Công thức"],
+              [
+                [
+                  c("Giãn xây TTS", { bold: true }),
+                  c(
+                    "Giá đất + TM × (1 - 18%) + Diện tích xây dựng × Chi phí XD × 1,1",
+                  ),
+                ],
+                [
+                  c("Giãn xây HTLS", { bold: true }),
+                  c("Giá đất + TM + Diện tích xây dựng × Chi phí XD × 1,1"),
+                ],
+                [
+                  c("Thô tự xây TTS", { bold: true }),
+                  c("Giá HĐMB HTLS × (1 - 18%)"),
+                ],
+                [
+                  c("CĐT hoàn thiện TTS", { bold: true }),
+                  c("Giá HĐMB HTLS × (1 - 22,5%)"),
+                ],
+                [
+                  c("Vốn tự có nếu vay", { bold: true }),
+                  c("Giá cơ sở HTLS × 30%"),
+                ],
+                [
+                  c("Lưu ý", { bold: true }),
+                  c(
+                    "Phiếu chỉ mang giá trị tham khảo; CSBH chính thức do Chủ Đầu Tư công bố",
+                  ),
+                ],
+              ],
+              [160, "*"],
+            ),
+          ],
+          styles: {
+            title: { fontSize: 17, bold: true, color: "#0a4d31" },
+            subTitle: {
+              fontSize: 12,
+              bold: true,
+              color: "#0a4d31",
+              margin: [0, 10, 0, 3],
+            },
+            small: { fontSize: 8, color: "#5f736a" },
+          },
+        };
+
+        pdfMake
+          .createPdf(doc)
+          .download(
+            `BTCLAND_CSBH_Vinhomes_Saigon_Park_${d.productLabel.replace(/\s+/g, "_")}_${d.paymentLabel.replace(/\s+/g, "_")}.pdf`,
+          );
+      }
+
+      $("pdfBtn").addEventListener("click", openLeadModal);
+      $("topPdfBtn").addEventListener("click", openLeadModal);
+      $("resetBtn").addEventListener("click", clearInputs);
+      $("closeLeadModal").addEventListener("click", hideLeadModal);
+      $("cancelLeadModal").addEventListener("click", hideLeadModal);
+
+      $("leadModal").addEventListener("click", (event) => {
+        if (event.target === $("leadModal")) hideLeadModal();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "Escape" &&
+          $("leadModal").classList.contains("show")
+        ) {
+          hideLeadModal();
+        }
+      });
+
+      $("leadForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const customer = getLeadData();
+        const err = validateLeadData(customer);
+
+        if (err) {
+          $("leadError").textContent = err;
+          $("leadError").style.display = "block";
+          return;
+        }
+
+        $("leadError").style.display = "none";
+        $("leadSubmitBtn").disabled = true;
+        $("leadSubmitBtn").textContent = "Đang gửi thông tin...";
+
+        try {
+          await sendLeadEmail(customer);
+          hideLeadModal();
+          exportPDF(customer);
+        } catch (error) {
+          console.error("EmailJS error:", error);
+          $("leadError").textContent =
+            "EmailJS lỗi: " +
+            (error?.status ? error.status + " - " : "") +
+            (error?.text || error?.message || JSON.stringify(error));
+          $("leadError").style.display = "block";
+        } finally {
+          $("leadSubmitBtn").disabled = false;
+          $("leadSubmitBtn").textContent = "Đăng ký";
+        }
+      });
+
+      [
+        "productLine",
+        "paymentPlan",
+        "customerDisplayName",
+        "staffDisplayName",
+      ].forEach((id) => {
+        $(id).addEventListener("input", updateUI);
+      });
+
+      ["landPrice", "buildCost", "contractPrice"].forEach((id) => {
+        $(id).addEventListener("input", () => {
+          formatMoneyInput(id);
+          updateUI();
+        });
+      });
+
+      ["landArea", "buildArea"].forEach((id) => {
+        $(id).addEventListener("input", updateUI);
+      });
+
+      updateUI();
+    </script>
+  </body>
+</html>
