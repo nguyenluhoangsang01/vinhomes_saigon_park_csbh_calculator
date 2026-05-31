@@ -1535,6 +1535,95 @@
         };
       }
 
+      function compactTh(t) {
+        return {
+          text: t,
+          bold: true,
+          fillColor: "#e7f3ec",
+          color: "#143b2a",
+          fontSize: 7.2,
+        };
+      }
+
+      function makeCompactTable(headers, body, widths) {
+        return {
+          table: {
+            headerRows: 1,
+            widths,
+            body: [headers.map(compactTh), ...body],
+            dontBreakRows: false,
+          },
+          layout: {
+            hLineColor: () => "#cfded4",
+            vLineColor: () => "#cfded4",
+            paddingTop: () => 3,
+            paddingBottom: () => 3,
+            paddingLeft: () => 4,
+            paddingRight: () => 4,
+          },
+          margin: [0, 4, 0, 8],
+        };
+      }
+
+      function constructionProgressBlock(result) {
+        const fs = 7.1;
+
+        const row = (lan, moc, tyle) => [
+          c(lan, { bold: true, fontSize: fs }),
+          c(moc, { fontSize: fs }),
+          c(tyle, { fontSize: fs }),
+        ];
+
+        return [
+          {
+            text: "Chi tiết tiến độ thanh toán Giá trị xây dựng",
+            style: "subTitle",
+            margin: [0, 8, 0, 3],
+          },
+          makeCompactTable(
+            ["Lần", "Chi tiết các mốc tiến độ", "Tỷ lệ thanh toán"],
+            [
+              row(
+                "Lần 1",
+                "D+540 ngày",
+                "10% Giá trị xây dựng gồm thuế GTGT và 5% Giá trị xây dựng không gồm thuế GTGT vào TTĐC đảm bảo thực hiện HĐMB.",
+              ),
+              row(
+                "Lần 2",
+                "D+540+15 ngày",
+                "15% Giá trị xây dựng gồm thuế GTGT.",
+              ),
+              row(
+                "Lần 3",
+                "D+540+60 ngày",
+                "15% Giá trị xây dựng gồm thuế GTGT.",
+              ),
+              row(
+                "Lần 4",
+                "D+540+120 ngày",
+                "15% Giá trị xây dựng gồm thuế GTGT.",
+              ),
+              row(
+                "Lần 5",
+                "D+540+180 ngày",
+                "15% Giá trị xây dựng gồm thuế GTGT.",
+              ),
+              row(
+                "Lần 6",
+                "Thu theo thông báo bàn giao của CĐT hoặc theo thỏa thuận.",
+                "25% Giá trị xây dựng gồm thuế GTGT + 100% KPBT + thuế GTGT của 5% giá trị xây dựng.",
+              ),
+              row(
+                "Lần 7",
+                "Theo thông báo của CĐT khi Nhà ở được cấp GCN hoặc khi Bên Mua tự làm thủ tục xin cấp GCN, tùy thời điểm nào đến trước.",
+                "5% Giá trị xây dựng không gồm thuế GTGT, khấu trừ từ TTĐC đảm bảo thực hiện HĐMB.",
+              ),
+            ],
+            [48, 220, "*"],
+          ),
+        ];
+      }
+
       function makeTable(headers, body, widths) {
         return {
           table: {
@@ -1730,6 +1819,9 @@
                   ),
                 ]
               : []),
+
+            ...(d.construction ? constructionProgressBlock(d) : []),
+
             {
               text: "Bảng so sánh các phương án",
               style: "subTitle",
