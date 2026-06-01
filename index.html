@@ -1299,6 +1299,72 @@
         return calcByLine(input, input.productLine, input.paymentPlan);
       }
 
+      function constructionProgressRows(input) {
+        const constructionTotal = input.buildArea * input.buildCost * 1.1;
+        const equityBase = input.landPrice * 0.3;
+
+        const rows = [
+          {
+            round: "Tổng",
+            milestone: "Tổng giá trị xây dựng",
+            rate: "100%",
+            amount: constructionTotal,
+            note: "Diện tích xây dựng × Chi phí XD chưa VAT × 1,1",
+          },
+          {
+            round: "Lần 1",
+            milestone: "D+540 ngày",
+            rate: "10%",
+            amount: constructionTotal * 0.1,
+            note: "Theo Excel: D11 × 10%",
+          },
+          {
+            round: "Lần 2",
+            milestone: "D+540+15 ngày",
+            rate: "15%",
+            amount: equityBase * 0.15,
+            note: "Theo Excel: VTC nếu vay NH × 15%",
+          },
+          {
+            round: "Lần 3",
+            milestone: "D+540+60 ngày",
+            rate: "15%",
+            amount: equityBase * 0.15,
+            note: "Theo Excel: VTC nếu vay NH × 15%",
+          },
+          {
+            round: "Lần 4",
+            milestone: "D+540+120 ngày",
+            rate: "15%",
+            amount: equityBase * 0.15,
+            note: "Theo Excel: VTC nếu vay NH × 15%",
+          },
+          {
+            round: "Lần 5",
+            milestone: "D+540+180 ngày",
+            rate: "15%",
+            amount: equityBase * 0.15,
+            note: "Theo Excel: VTC nếu vay NH × 15%",
+          },
+          {
+            round: "Lần 6",
+            milestone: "D+540+270 ngày",
+            rate: "25%",
+            amount: equityBase * 0.25,
+            note: "Theo Excel: VTC nếu vay NH × 25%",
+          },
+          {
+            round: "Lần 7",
+            milestone: "Thông báo nhận sổ",
+            rate: "5%",
+            amount: equityBase * 0.05,
+            note: "Theo Excel: VTC nếu vay NH × 5%",
+          },
+        ];
+
+        return rows;
+      }
+
       function compareRows(input) {
         const rows = [];
         ["gianxay", "tho", "hoanthien"].forEach((line) => {
@@ -1486,6 +1552,22 @@
         const input = inputData();
         const d = calcCurrent();
 
+        const progressRows =
+          input.productLine === "gianxay" &&
+          input.buildArea > 0 &&
+          input.buildCost > 0
+            ? constructionProgressRows(input)
+            : [];
+
+        const constructionProgressText = progressRows.length
+          ? progressRows
+              .map(
+                (r) =>
+                  `${r.round}: ${r.milestone} | ${r.rate} | ${money(r.amount)} | ${r.note}`,
+              )
+              .join("\n")
+          : "Không áp dụng";
+
         const params = {
           to_email: "hoangphibtcland@gmail.com",
           from_name: "BTCLAND VIETNAM",
@@ -1509,6 +1591,7 @@
           total_price: money(d.total),
           htls_policy: d.paymentPlan === "htls" ? d.htls : "—",
           formula: d.formula,
+          construction_progress: constructionProgressText,
         };
 
         return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
@@ -1620,6 +1703,59 @@
               ),
             ],
             [48, 220, "*"],
+          ),
+        ];
+      }
+
+      function compactTh(t) {
+        return {
+          text: t,
+          bold: true,
+          fillColor: "#e7f3ec",
+          color: "#143b2a",
+          fontSize: 7.2,
+        };
+      }
+
+      function makeCompactTable(headers, body, widths) {
+        return {
+          table: {
+            headerRows: 1,
+            widths,
+            body: [headers.map(compactTh), ...body],
+            dontBreakRows: false,
+          },
+          layout: {
+            hLineColor: () => "#cfded4",
+            vLineColor: () => "#cfded4",
+            paddingTop: () => 3,
+            paddingBottom: () => 3,
+            paddingLeft: () => 4,
+            paddingRight: () => 4,
+          },
+          margin: [0, 4, 0, 8],
+        };
+      }
+
+      function constructionProgressBlock(input) {
+        const rows = constructionProgressRows(input).map((r) => [
+          c(r.round, { bold: true, fontSize: 7.1 }),
+          c(r.milestone, { fontSize: 7.1 }),
+          c(r.rate, { alignment: "right", fontSize: 7.1 }),
+          c(money(r.amount), { alignment: "right", fontSize: 7.1 }),
+          c(r.note, { fontSize: 7.1 }),
+        ]);
+
+        return [
+          {
+            text: "Chi tiết tiến độ thanh toán Giá trị xây dựng",
+            style: "subTitle",
+            margin: [0, 8, 0, 3],
+          },
+          makeCompactTable(
+            ["Lần", "Chi tiết các mốc tiến độ", "Tỷ lệ", "Số tiền", "Ghi chú"],
+            rows,
+            [42, 145, 45, 95, "*"],
           ),
         ];
       }
@@ -1820,7 +1956,11 @@
                 ]
               : []),
 
-            ...(d.construction ? constructionProgressBlock(d) : []),
+            ...(input.productLine === "gianxay" &&
+            input.buildArea > 0 &&
+            input.buildCost > 0
+              ? constructionProgressBlock(input)
+              : []),
 
             {
               text: "Bảng so sánh các phương án",
@@ -1905,8 +2045,10 @@
                   c("Giá HĐMB HTLS × (1 - 22,5%)"),
                 ],
                 [
-                  c("Vốn tự có nếu vay", { bold: true }),
-                  c("Giá cơ sở HTLS × 30%"),
+                  c("Tiến độ giá trị xây dựng", { bold: true }),
+                  c(
+                    "Lần 1 = Giá trị xây dựng × 10%; Lần 2–7 = VTC nếu vay ngân hàng × tỷ lệ 15%, 15%, 15%, 15%, 25%, 5%",
+                  ),
                 ],
                 [
                   c("Lưu ý", { bold: true }),
